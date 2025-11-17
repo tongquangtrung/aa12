@@ -1,20 +1,20 @@
-package com.example.quanlydodunghoctap;
+package com.example.quanlydodung;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
-import com.example.quanlydodunghoctap.adapters.DoDungAdapter;
-import com.example.quanlydodunghoctap.database.DBHelper;
+import com.example.quanlydodung.adapters.DoDungAdapter;
+import com.example.quanlydodung.database.DBHelper;
 
 public class SearchActivity extends AppCompatActivity {
 
     EditText edtSearch;
-    ImageButton btnSearch;
     RecyclerView recyclerView;
 
     DBHelper db;
@@ -27,16 +27,23 @@ public class SearchActivity extends AppCompatActivity {
         db = new DBHelper(this);
 
         edtSearch = findViewById(R.id.edtSearch);
-        btnSearch = findViewById(R.id.btnSearch);
-        recyclerView = findViewById(R.id.recyclerSearch);
+        recyclerView = findViewById(R.id.lvSearch);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        btnSearch.setOnClickListener(v -> {
-            String keyword = edtSearch.getText().toString();
-            DoDungAdapter adapter =
-                    new DoDungAdapter(this, db.searchDoDung(keyword));
-            recyclerView.setAdapter(adapter);
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String keyword = s.toString();
+                DoDungAdapter adapter = new DoDungAdapter(SearchActivity.this, db.searchDoDung(keyword));
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
         });
     }
 }
