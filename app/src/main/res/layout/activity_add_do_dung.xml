@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Thêm Đồ Dùng" android:textSize="22sp" android:textStyle="bold"
+            android:layout_gravity="center" android:padding="10dp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tên đồ dùng:" />
+        <EditText android:id="@+id/edtTenAdd" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nhập tên đồ dùng" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Giá:" />
+        <EditText android:id="@+id/edtGiaAdd" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:hint="Nhập giá tiền" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Loại đồ dùng:" android:layout_marginTop="10dp" />
+        <Spinner android:id="@+id/spnLoaiAdd" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ảnh minh hoạ:" android:layout_marginTop="10dp" />
+        <ImageView android:id="@+id/imgPreviewAdd" android:layout_width="150dp" android:layout_height="150dp" android:layout_gravity="center" android:scaleType="centerCrop" android:background="#DDDDDD" android:padding="5dp" />
+        <Button android:id="@+id/btnChonAnhAdd" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chọn ảnh" android:layout_marginTop="10dp" android:layout_gravity="center" />
+        <Button android:id="@+id/btnThemAdd" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="THÊM ĐỒ DÙNG" android:textStyle="bold" android:background="#2196F3" android:textColor="#FFFFFF" android:layout_marginTop="15dp" android:padding="10dp" />
+    </LinearLayout>
+</ScrollView>
