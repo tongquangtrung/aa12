@@ -1,4 +1,4 @@
-package com.example.quanlydodunghoctap.models;
+package com.example.quanlydodung.models;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

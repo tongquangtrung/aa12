@@ -1,4 +1,4 @@
-package com.example.quanlydodunghoctap.database;
+package com.example.quanlydodung.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.quanlydodunghoctap.models.DoDung;
-import com.example.quanlydodunghoctap.models.LoaiDoDung;
+import com.example.quanlydodung.models.DoDung;
+import com.example.quanlydodung.models.LoaiDoDung;
 
 import java.util.ArrayList;
 
@@ -33,8 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // sample data
         db.execSQL("INSERT INTO " + TABLE_LOAI + "(tenLoai, moTa) VALUES ('Đồ dùng viết','Bút, bút chì'),('Đồ dùng học sinh','Vở, balo')");
-        db.execSQL("INSERT INTO " + TABLE_DODUNG + "(tenDoDung, loaiId, gia, anh) VALUES ('Bút bi','1',12000,'')");
-        db.execSQL("INSERT INTO " + TABLE_DODUNG + "(tenDoDung, loaiId, gia, anh) VALUES ('Vở kẻ ngang','2',15000,'')");
+        db.execSQL("INSERT INTO " + TABLE_DODUNG + "(tenDoDung, loaiId, gia, anh) VALUES ('Bút bi',1,12000,''),('Vở kẻ ngang',2,15000,'')");
     }
 
     @Override
@@ -54,7 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
-    public ArrayList<LoaiDoDung> getAllLoaiDoDung() {
+    public ArrayList<LoaiDoDung> getAllLoai() {
         ArrayList<LoaiDoDung> list = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_LOAI + " ORDER BY id DESC", null);
@@ -65,6 +64,10 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         c.close();
         return list;
+    }
+
+    public ArrayList<LoaiDoDung> getAllLoaiDoDung() {
+        return getAllLoai();
     }
 
     public boolean updateLoaiDoDung(int id, String tenLoai, String moTa) {
@@ -85,15 +88,14 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // DoDung CRUD
-    public boolean insertDoDung(String ten, int loaiId, double gia, String anhBase64) {
+    public long insertDoDung(String ten, int loaiId, double gia, String anhBase64) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("tenDoDung", ten);
         cv.put("loaiId", loaiId);
         cv.put("gia", gia);
         cv.put("anh", anhBase64);
-        long id = db.insert(TABLE_DODUNG, null, cv);
-        return id != -1;
+        return db.insert(TABLE_DODUNG, null, cv);
     }
 
     public ArrayList<DoDung> getAllDoDung() {

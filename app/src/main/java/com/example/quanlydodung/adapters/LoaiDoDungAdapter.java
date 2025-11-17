@@ -1,4 +1,4 @@
-package com.example.quanlydodunghoctap.adapters;
+package com.example.quanlydodung.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quanlydodunghoctap.R;
-import com.example.quanlydodunghoctap.database.DBHelper;
-import com.example.quanlydodunghoctap.models.LoaiDoDung;
+import com.example.quanlydodung.R;
+import com.example.quanlydodung.database.DBHelper;
+import com.example.quanlydodung.models.LoaiDoDung;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class LoaiDoDungAdapter extends RecyclerView.Adapter<LoaiDoDungAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_loaidodung, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_loai_do_dung, parent, false);
         return new ViewHolder(v);
     }
 
@@ -75,8 +75,8 @@ public class LoaiDoDungAdapter extends RecyclerView.Adapter<LoaiDoDungAdapter.Vi
         ImageButton btnEdit, btnDelete;
         public ViewHolder(View itemView) {
             super(itemView);
-            tvTen = itemView.findViewById(R.id.tvTenLoaiDoDung);
-            tvMoTa = itemView.findViewById(R.id.tvMoTaLoai);
+            tvTen = itemView.findViewById(R.id.tvTenLoai);
+            tvMoTa = itemView.findViewById(R.id.tvMoTa);
             btnEdit = itemView.findViewById(R.id.btnEditLoai);
             btnDelete = itemView.findViewById(R.id.btnDeleteLoai);
         }

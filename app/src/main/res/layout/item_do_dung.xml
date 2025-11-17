@@ -3,7 +3,7 @@
     <ImageView android:id="@+id/imgDoDung" android:layout_width="80dp" android:layout_height="80dp" android:scaleType="centerCrop" android:src="@drawable/ic_launcher_foreground"/>
     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingLeft="8dp">
         <TextView android:id="@+id/tvTenDoDung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tên đồ dùng" android:textSize="16sp" android:textStyle="bold"/>
-        <TextView android:id="@+id/tvSoLuongDoDung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Giá: 0" android:layout_marginTop="4dp"/>
+        <TextView android:id="@+id/tvGiaDoDung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Giá: 0" android:layout_marginTop="4dp"/>
         <TextView android:id="@+id/tvLoaiDoDung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Loại: ..." android:layout_marginTop="4dp"/>
     </LinearLayout>
     <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center">

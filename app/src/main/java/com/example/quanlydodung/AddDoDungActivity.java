@@ -1,4 +1,4 @@
-package com.example.quanlydodunghoctap;
+package com.example.quanlydodung;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.quanlydodunghoctap.database.DBHelper;
-import com.example.quanlydodunghoctap.models.LoaiDoDung;
+import com.example.quanlydodung.database.DBHelper;
+import com.example.quanlydodung.models.LoaiDoDung;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class AddDoDungActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_dodung);
+        setContentView(R.layout.activity_add_do_dung);
 
         dbHelper = new DBHelper(this);
 

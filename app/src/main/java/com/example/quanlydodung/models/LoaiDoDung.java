@@ -1,38 +1,24 @@
-package com.example.quanlydodunghoctap;
+package com.example.quanlydodung.models;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class LoaiDoDung {
+    private int id;
+    private String tenLoai;
+    private String moTa;
 
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
+    public LoaiDoDung() {}
 
-import com.example.quanlydodunghoctap.database.DBHelper;
-
-public class AddDoDungActivity extends AppCompatActivity {
-
-    EditText edtTen, edtMoTa, edtLoai;
-    Button btnSave;
-    DBHelper db;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_do_dung);
-
-        db = new DBHelper(this);
-
-        edtTen = findViewById(R.id.edtTen);
-        edtMoTa = findViewById(R.id.edtMoTa);
-        edtLoai = findViewById(R.id.edtLoai);
-        btnSave = findViewById(R.id.btnSave);
-
-        btnSave.setOnClickListener(v -> {
-            db.addDoDung(
-                    edtTen.getText().toString(),
-                    edtMoTa.getText().toString(),
-                    edtLoai.getText().toString()
-            );
-            finish();
-        });
+    public LoaiDoDung(int id, String tenLoai, String moTa) {
+        this.id = id;
+        this.tenLoai = tenLoai;
+        this.moTa = moTa;
     }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getTenLoai() { return tenLoai; }
+    public void setTenLoai(String tenLoai) { this.tenLoai = tenLoai; }
+
+    public String getMoTa() { return moTa; }
+    public void setMoTa(String moTa) { this.moTa = moTa; }
 }

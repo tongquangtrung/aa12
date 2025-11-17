@@ -1,4 +1,4 @@
-package com.example.quanlydodunghoctap.adapters;
+package com.example.quanlydodung.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,10 +13,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quanlydodunghoctap.R;
-import com.example.quanlydodunghoctap.UpdateDoDungActivity;
-import com.example.quanlydodunghoctap.database.DBHelper;
-import com.example.quanlydodunghoctap.models.DoDung;
+import com.example.quanlydodung.R;
+import com.example.quanlydodung.UpdateDoDungActivity;
+import com.example.quanlydodung.database.DBHelper;
+import com.example.quanlydodung.models.DoDung;
 
 import java.util.ArrayList;
 
@@ -34,7 +34,7 @@ public class DoDungAdapter extends RecyclerView.Adapter<DoDungAdapter.ViewHolder
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_dodung, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_do_dung, parent, false);
         return new ViewHolder(v);
     }
 
@@ -42,7 +42,7 @@ public class DoDungAdapter extends RecyclerView.Adapter<DoDungAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         DoDung d = list.get(position);
         holder.tvTen.setText(d.getTenDoDung());
-        holder.tvSoLuong.setText("Giá: " + (int)d.getGia() + " VND");
+        holder.tvGia.setText("Giá: " + (int)d.getGia() + " VND");
         holder.tvLoai.setText("Loại ID: " + d.getLoaiDoDung());
 
         if (d.getAnh() != null && !d.getAnh().isEmpty()) {
@@ -78,13 +78,13 @@ public class DoDungAdapter extends RecyclerView.Adapter<DoDungAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
-        TextView tvTen, tvSoLuong, tvLoai;
+        TextView tvTen, tvGia, tvLoai;
         ImageButton btnEdit, btnDelete;
         public ViewHolder(View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.imgDoDung);
             tvTen = itemView.findViewById(R.id.tvTenDoDung);
-            tvSoLuong = itemView.findViewById(R.id.tvSoLuongDoDung);
+            tvGia = itemView.findViewById(R.id.tvGiaDoDung);
             tvLoai = itemView.findViewById(R.id.tvLoaiDoDung);
             btnEdit = itemView.findViewById(R.id.btnEditDoDung);
             btnDelete = itemView.findViewById(R.id.btnDeleteDoDung);

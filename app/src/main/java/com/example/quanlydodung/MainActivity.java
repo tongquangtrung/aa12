@@ -1,4 +1,4 @@
-package com.example.quanlydodunghoctap;
+package com.example.quanlydodung;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,9 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import com.example.quanlydodunghoctap.adapters.DoDungAdapter;
-import com.example.quanlydodunghoctap.database.DBHelper;
-import com.example.quanlydodunghoctap.models.DoDung;
+import com.example.quanlydodung.adapters.DoDungAdapter;
+import com.example.quanlydodung.database.DBHelper;
+import com.example.quanlydodung.models.DoDung;
 
 import java.util.ArrayList;
 

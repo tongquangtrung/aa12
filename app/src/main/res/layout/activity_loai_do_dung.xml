@@ -7,5 +7,5 @@
     <EditText android:id="@+id/edtMoTaLoai" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nhập mô tả"/>
     <Button android:id="@+id/btnThemLoai" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="THÊM LOẠI" android:layout_marginTop="10dp" android:background="#4CAF50" android:textColor="#FFFFFF" android:textStyle="bold"/>
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Danh sách loại đồ dùng:" android:textStyle="bold" android:layout_marginTop="15dp"/>
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/lvLoaiDoDung" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerLoaiDoDung" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 </LinearLayout>

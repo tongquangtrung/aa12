@@ -1,4 +1,4 @@
-package com.example.quanlydodunghoctap;
+package com.example.quanlydodung;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.quanlydodunghoctap.adapters.LoaiDoDungAdapter;
-import com.example.quanlydodunghoctap.database.DBHelper;
+import com.example.quanlydodung.adapters.LoaiDoDungAdapter;
+import com.example.quanlydodung.database.DBHelper;
 
 public class LoaiDoDungActivity extends AppCompatActivity {
 

@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="16dp">
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tìm kiếm đồ dùng" android:textStyle="bold" android:textSize="22sp" android:layout_gravity="center" android:paddingBottom="12dp"/>
-    <EditText android:id="@+id/edtSearch" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nhập tên đồ dùng cần tìm..." android:padding="8dp" android:drawableLeft="@android:drawable/ic_menu_search" android:background="#EEEEEE" android:layout_marginBottom="10dp"/>
-    <ListView android:id="@+id/lvSearch" android:layout_width="match_parent" android:layout_height="match_parent"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tìm kiếm đồ dùng"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:paddingBottom="12dp"/>
+
+    <EditText
+        android:id="@+id/edtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên đồ dùng cần tìm..."
+        android:padding="8dp"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:background="#EEEEEE"
+        android:layout_marginBottom="10dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lvSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
