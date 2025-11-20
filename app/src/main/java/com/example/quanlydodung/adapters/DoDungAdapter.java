@@ -18,7 +18,9 @@ import com.example.quanlydodung.UpdateDoDungActivity;
 import com.example.quanlydodung.database.DBHelper;
 import com.example.quanlydodung.models.DoDung;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DoDungAdapter extends RecyclerView.Adapter<DoDungAdapter.ViewHolder> {
 
@@ -42,13 +44,33 @@ public class DoDungAdapter extends RecyclerView.Adapter<DoDungAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         DoDung d = list.get(position);
         holder.tvTen.setText(d.getTenDoDung());
-        holder.tvGia.setText("Giá: " + (int)d.getGia() + " VND");
-        holder.tvLoai.setText("Loại ID: " + d.getLoaiDoDung());
 
-        if (d.getAnh() != null && !d.getAnh().isEmpty()) {
-            Bitmap bmp = d.getBitmapImage();
-            if (bmp != null) holder.img.setImageBitmap(bmp);
+        // Format price nicely
+        NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
+        holder.tvGia.setText(formatter.format((int) d.getGia()) + "đ");
+
+        // Display description if available
+        if (d.getMoTa() != null && !d.getMoTa().isEmpty()) {
+            holder.tvMoTa.setText(d.getMoTa());
+            holder.tvMoTa.setVisibility(View.VISIBLE);
         } else {
+            holder.tvMoTa.setVisibility(View.GONE);
+        }
+
+        // Xử lý hiển thị ảnh an toàn
+        try {
+            if (d.getAnh() != null && !d.getAnh().isEmpty()) {
+                Bitmap bmp = d.getBitmapImage();
+                if (bmp != null) {
+                    holder.img.setImageBitmap(bmp);
+                } else {
+                    holder.img.setImageResource(R.drawable.ic_launcher_foreground);
+                }
+            } else {
+                holder.img.setImageResource(R.drawable.ic_launcher_foreground);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
             holder.img.setImageResource(R.drawable.ic_launcher_foreground);
         }
 
@@ -74,18 +96,21 @@ public class DoDungAdapter extends RecyclerView.Adapter<DoDungAdapter.ViewHolder
     }
 
     @Override
-    public int getItemCount() { return list.size(); }
+    public int getItemCount() {
+        return list.size();
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
-        TextView tvTen, tvGia, tvLoai;
+        TextView tvTen, tvGia, tvMoTa;
         ImageButton btnEdit, btnDelete;
+
         public ViewHolder(View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.imgDoDung);
             tvTen = itemView.findViewById(R.id.tvTenDoDung);
             tvGia = itemView.findViewById(R.id.tvGiaDoDung);
-            tvLoai = itemView.findViewById(R.id.tvLoaiDoDung);
+            tvMoTa = itemView.findViewById(R.id.tvMoTa);
             btnEdit = itemView.findViewById(R.id.btnEditDoDung);
             btnDelete = itemView.findViewById(R.id.btnDeleteDoDung);
         }

@@ -11,18 +11,44 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        android:theme="@style/Theme.QuanLyDoDung">
 
-        <activity android:name=".AddDoDungActivity"/>
-        <activity android:name=".UpdateDoDungActivity"/>
-        <activity android:name=".SearchActivity"/>
-        <activity android:name=".LoaiDoDungActivity"/>
-        <activity android:name=".MainActivity"
+        <!-- CategoryGridActivity as Main Launcher -->
+        <activity
+            android:name=".CategoryGridActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!-- ProductListActivity -->
+        <activity
+            android:name=".ProductListActivity"
+            android:parentActivityName=".CategoryGridActivity"
+            android:exported="false" />
+
+        <!-- MainActivity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- Other Activities -->
+        <activity
+            android:name=".AddDoDungActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateDoDungActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoaiDoDungActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddCategoryActivity"
+            android:exported="false" />
     </application>
 </manifest>

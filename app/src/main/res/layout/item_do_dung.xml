@@ -1,13 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="12dp" android:background="#FFFFFF">
-    <ImageView android:id="@+id/imgDoDung" android:layout_width="80dp" android:layout_height="80dp" android:scaleType="centerCrop" android:src="@drawable/ic_launcher_foreground"/>
-    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingLeft="8dp">
-        <TextView android:id="@+id/tvTenDoDung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tên đồ dùng" android:textSize="16sp" android:textStyle="bold"/>
-        <TextView android:id="@+id/tvGiaDoDung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Giá: 0" android:layout_marginTop="4dp"/>
-        <TextView android:id="@+id/tvLoaiDoDung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Loại: ..." android:layout_marginTop="4dp"/>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF">
+
+        <!-- Product Image -->
+        <ImageView
+            android:id="@+id/imgDoDung"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:background="#F0F0F0"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <!-- Product Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Product Name -->
+            <TextView
+                android:id="@+id/tvTenDoDung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên sản phẩm"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <!-- Product Description -->
+            <TextView
+                android:id="@+id/tvMoTa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mô tả sản phẩm"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginTop="4dp" />
+
+            <!-- Price -->
+            <TextView
+                android:id="@+id/tvGiaDoDung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0đ"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#E91E63"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#F5F5F5"
+            android:padding="8dp">
+
+            <ImageButton
+                android:id="@+id/btnEditDoDung"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_edit"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="Sửa" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#DDDDDD" />
+
+            <ImageButton
+                android:id="@+id/btnDeleteDoDung"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_delete"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="Xóa" />
+
+        </LinearLayout>
+
     </LinearLayout>
-    <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center">
-        <ImageButton android:id="@+id/btnEditDoDung" android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/ic_edit" android:background="@null"/>
-        <ImageButton android:id="@+id/btnDeleteDoDung" android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/ic_delete" android:background="@null" android:layout_marginTop="8dp"/>
-    </LinearLayout>
-</LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

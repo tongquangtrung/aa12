@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.quanlydodung.adapters.DoDungAdapter;
 import com.example.quanlydodung.database.DBHelper;
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btnAdd;
     ArrayList<DoDung> list;
     DBHelper db;
+    int categoryId = -1; // -1 means show all products
+    String categoryName = "";
 
     @Override
     protected void onResume() {
@@ -32,23 +35,75 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db = new DBHelper(this);
+        try {
+            db = new DBHelper(this);
 
-        recyclerDoDung = findViewById(R.id.recyclerDoDung);
-        btnAdd = findViewById(R.id.btnAddDoDung);
+            // Get category info from intent if available
+            categoryId = getIntent().getIntExtra("loaiId", -1);
+            if (categoryId == -1) {
+                categoryId = getIntent().getIntExtra("categoryId", -1);
+            }
+            categoryName = getIntent().getStringExtra("tenLoai");
+            if (categoryName == null || categoryName.isEmpty()) {
+                categoryName = getIntent().getStringExtra("categoryName");
+            }
 
-        recyclerDoDung.setLayoutManager(new LinearLayoutManager(this));
+            // Set title based on category
+            if (categoryId != -1 && categoryName != null && !categoryName.isEmpty()) {
+                setTitle(categoryName);
+            } else {
+                setTitle("Tất cả sản phẩm");
+            }
 
-        btnAdd.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, AddDoDungActivity.class));
-        });
+            recyclerDoDung = findViewById(R.id.recyclerDoDung);
+            btnAdd = findViewById(R.id.btnAddDoDung);
 
-        loadData();
+            recyclerDoDung.setLayoutManager(new LinearLayoutManager(this));
+
+            btnAdd.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, AddDoDungActivity.class);
+                if (categoryId != -1) {
+                    intent.putExtra("loaiId", categoryId);
+                    intent.putExtra("categoryId", categoryId);
+                }
+                startActivity(intent);
+            });
+
+            loadData();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Lỗi khởi tạo: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     void loadData() {
-        list = db.getAllDoDung();
-        DoDungAdapter adapter = new DoDungAdapter(this, list);
-        recyclerDoDung.setAdapter(adapter);
+        try {
+            // Load products based on category
+            if (categoryId != -1) {
+                list = db.getDoDungByLoai(categoryId);
+                if (list.isEmpty()) {
+                    Toast.makeText(this, "Danh mục này chưa có sản phẩm", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                list = db.getAllDoDung();
+            }
+
+            if (list == null) {
+                list = new ArrayList<>();
+            }
+            DoDungAdapter adapter = new DoDungAdapter(this, list);
+            recyclerDoDung.setAdapter(adapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Lỗi tải dữ liệu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (db != null) {
+            db.close();
+        }
     }
 }

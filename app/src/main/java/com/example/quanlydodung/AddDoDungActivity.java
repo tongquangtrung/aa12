@@ -95,16 +95,51 @@ public class AddDoDungActivity extends AppCompatActivity {
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                encodedImage = convertToBase64(bitmap);
+
+                // Resize ảnh để tránh OutOfMemoryError
+                Bitmap resizedBitmap = resizeBitmap(bitmap, 800, 800);
+                if (bitmap != resizedBitmap) {
+                    bitmap.recycle(); // Giải phóng bitmap gốc
+                }
+
+                encodedImage = convertToBase64(resizedBitmap);
+                resizedBitmap.recycle(); // Giải phóng bitmap sau khi encode
             } catch (IOException e) {
                 e.printStackTrace();
+                Toast.makeText(this, "Lỗi khi tải ảnh!", Toast.LENGTH_SHORT).show();
+            } catch (OutOfMemoryError e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Ảnh quá lớn, vui lòng chọn ảnh khác!", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    private Bitmap resizeBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        if (width <= maxWidth && height <= maxHeight) {
+            return bitmap;
+        }
+
+        float ratioBitmap = (float) width / (float) height;
+        float ratioMax = (float) maxWidth / (float) maxHeight;
+
+        int finalWidth = maxWidth;
+        int finalHeight = maxHeight;
+
+        if (ratioMax > ratioBitmap) {
+            finalWidth = (int) ((float) maxHeight * ratioBitmap);
+        } else {
+            finalHeight = (int) ((float) maxWidth / ratioBitmap);
+        }
+
+        return Bitmap.createScaledBitmap(bitmap, finalWidth, finalHeight, true);
+    }
+
     private String convertToBase64(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream); // Giảm xuống 50% chất lượng
         byte[] bytes = stream.toByteArray();
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }

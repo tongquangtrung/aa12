@@ -4,6 +4,7 @@ public class LoaiDoDung {
     private int id;
     private String tenLoai;
     private String moTa;
+    private String icon;
 
     public LoaiDoDung() {}
 
@@ -11,6 +12,7 @@ public class LoaiDoDung {
         this.id = id;
         this.tenLoai = tenLoai;
         this.moTa = moTa;
+        this.icon = "📦";
     }
 
     public int getId() { return id; }
@@ -21,4 +23,7 @@ public class LoaiDoDung {
 
     public String getMoTa() { return moTa; }
     public void setMoTa(String moTa) { this.moTa = moTa; }
+
+    public String getIcon() { return icon; }
+    public void setIcon(String icon) { this.icon = icon; }
 }

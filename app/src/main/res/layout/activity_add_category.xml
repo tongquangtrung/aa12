@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/purple_500"
+                app:titleTextColor="@android:color/white"
+                app:title="Thêm Danh Mục Mới" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- Card Form -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:contentPadding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Tên loại -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên danh mục *"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/edtTenLoai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ví dụ: Đồ dùng học tập"
+                    android:padding="12dp"
+                    android:background="@drawable/edit_text_background"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Mô tả -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mô tả"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/edtMoTa"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:hint="Nhập mô tả chi tiết về danh mục"
+                    android:padding="12dp"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5"
+                    android:background="@drawable/edit_text_background"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Icon selector -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chọn biểu tượng"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="8dp" />
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="5"
+                    android:rowCount="2"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/icon1"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="📦"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="📦" />
+
+                    <TextView
+                        android:id="@+id/icon2"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="✏️"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="✏️" />
+
+                    <TextView
+                        android:id="@+id/icon3"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="🎒"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="🎒" />
+
+                    <TextView
+                        android:id="@+id/icon4"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="📋"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="📋" />
+
+                    <TextView
+                        android:id="@+id/icon5"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="🎨"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="🎨" />
+
+                    <TextView
+                        android:id="@+id/icon6"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="💻"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="💻" />
+
+                    <TextView
+                        android:id="@+id/icon7"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="📐"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="📐" />
+
+                    <TextView
+                        android:id="@+id/icon8"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="🖊️"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="🖊️" />
+
+                    <TextView
+                        android:id="@+id/icon9"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="📚"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="📚" />
+
+                    <TextView
+                        android:id="@+id/icon10"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_columnWeight="1"
+                        android:text="🎯"
+                        android:textSize="32sp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:tag="🎯" />
+
+                </GridLayout>
+
+                <!-- Selected icon display -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Biểu tượng đã chọn:"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tvSelectedIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📦"
+                    android:textSize="48sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Hủy"
+                android:textColor="@color/purple_500"
+                android:backgroundTint="@android:color/white"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Lưu"
+                android:backgroundTint="@color/purple_500"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
