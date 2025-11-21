@@ -10,4 +10,11 @@
         <item name="android:navigationBarColor">@color/black</item>
         <!-- Bạn có thể bổ sung thêm tuỳ chỉnh cho app ở đây -->
     </style>
+    <style name="Theme.QuanLyDoDung.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- copy các thuộc tính tuỳ chỉnh từ Theme.QuanLyDoDung nếu cần --><item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+        <item name="android:statusBarColor">@color/purple_700</item>
+        <item name="android:navigationBarColor">@color/black</item>
+    </style>
 </resources>

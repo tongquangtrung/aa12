@@ -44,6 +44,7 @@ public class CategoryGridActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     LoaiDoDung loai = categories.get(position);
+                    Toast.makeText(CategoryGridActivity.this, "Clicked: " + loai.getTenLoai(), Toast.LENGTH_SHORT).show();
 
                     // Navigate to ProductListActivity to show products by category
                     Intent intent = new Intent(CategoryGridActivity.this, ProductListActivity.class);
@@ -118,6 +119,13 @@ public class CategoryGridActivity extends AppCompatActivity {
             tvIcon.setText(loai.getIcon() != null ? loai.getIcon() : "📦");
             tvName.setText(loai.getTenLoai());
             tvDesc.setText(loai.getMoTa());
+
+            view.setOnClickListener(v -> {
+                Intent intent = new Intent(CategoryGridActivity.this, ProductListActivity.class);
+                intent.putExtra("loaiId", loai.getId());
+                intent.putExtra("tenLoai", loai.getTenLoai());
+                startActivity(intent);
+            });
 
             return view;
         }

@@ -82,14 +82,22 @@ public class ProductListActivity extends AppCompatActivity {
         recyclerProducts.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void setupToolbar() {
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(categoryName);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        toolbar.setNavigationOnClickListener(v -> finish());
-    }
+//    private void setupToolbar() {
+//        setSupportActionBar(toolbar);
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setTitle(categoryName);
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        }
+//        toolbar.setNavigationOnClickListener(v -> finish());
+//    }
+private void setupToolbar() {
+    // Không gọi setSupportActionBar() để tránh IllegalStateException
+    toolbar.setTitle(categoryName);
+    // nếu muốn đổi màu chữ tiêu đề:
+    // toolbar.setTitleTextColor(Color.WHITE);
+    // Thiết lập nút back (bạn đã có navigationIcon trong layout)
+    toolbar.setNavigationOnClickListener(v -> finish());
+}
 
     private void setupSortSpinner() {
         String[] sortOptions = {
