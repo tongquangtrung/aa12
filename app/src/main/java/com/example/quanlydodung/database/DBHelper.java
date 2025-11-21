@@ -138,11 +138,35 @@ public class DBHelper extends SQLiteOpenHelper {
         return getAllLoai();
     }
 
+    public LoaiDoDung getLoaiById(int id) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_LOAI + " WHERE id=?", new String[]{String.valueOf(id)});
+        LoaiDoDung loai = null;
+        if (c.moveToFirst()) {
+            loai = new LoaiDoDung(c.getInt(0), c.getString(1), c.getString(2));
+            if (c.getColumnCount() > 3) {
+                loai.setIcon(c.getString(3));
+            }
+        }
+        c.close();
+        return loai;
+    }
+
     public boolean updateLoaiDoDung(int id, String tenLoai, String moTa) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("tenLoai", tenLoai);
         cv.put("moTa", moTa);
+        int rows = db.update(TABLE_LOAI, cv, "id=?", new String[]{String.valueOf(id)});
+        return rows > 0;
+    }
+
+    public boolean updateLoaiDoDung(int id, String tenLoai, String moTa, String icon) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("tenLoai", tenLoai);
+        cv.put("moTa", moTa);
+        cv.put("icon", icon);
         int rows = db.update(TABLE_LOAI, cv, "id=?", new String[]{String.valueOf(id)});
         return rows > 0;
     }

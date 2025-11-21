@@ -50,5 +50,8 @@
         <activity
             android:name=".AddCategoryActivity"
             android:exported="false" />
+        <activity
+            android:name=".UpdateCategoryActivity"
+            android:exported="false" />
     </application>
 </manifest>

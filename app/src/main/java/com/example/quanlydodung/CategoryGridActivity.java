@@ -1,6 +1,7 @@
 package com.example.quanlydodung;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ public class CategoryGridActivity extends AppCompatActivity {
     ArrayList<LoaiDoDung> categories;
     CategoryAdapter adapter;
     private static final int REQUEST_ADD_CATEGORY = 100;
+    private static final int REQUEST_UPDATE_CATEGORY = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +41,6 @@ public class CategoryGridActivity extends AppCompatActivity {
 
             // Load categories from database
             loadCategories();
-
-            // Handle grid item click - Show products in this category
-            gridCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    LoaiDoDung loai = categories.get(position);
-                    Toast.makeText(CategoryGridActivity.this, "Clicked: " + loai.getTenLoai(), Toast.LENGTH_SHORT).show();
-
-                    // Navigate to ProductListActivity to show products by category
-                    Intent intent = new Intent(CategoryGridActivity.this, ProductListActivity.class);
-                    intent.putExtra("loaiId", loai.getId());
-                    intent.putExtra("tenLoai", loai.getTenLoai());
-                    startActivity(intent);
-                }
-            });
 
             // Handle FAB click - Add new category
             fabAddCategory.setOnClickListener(v -> {
@@ -69,8 +57,9 @@ public class CategoryGridActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_ADD_CATEGORY && resultCode == RESULT_OK) {
-            // Reload categories after adding new one
+        if ((requestCode == REQUEST_ADD_CATEGORY || requestCode == REQUEST_UPDATE_CATEGORY)
+                && resultCode == RESULT_OK) {
+            // Reload categories after adding/updating
             loadCategories();
         }
     }
@@ -115,16 +104,45 @@ public class CategoryGridActivity extends AppCompatActivity {
             TextView tvIcon = view.findViewById(R.id.tvCategoryIcon);
             TextView tvName = view.findViewById(R.id.tvCategoryName);
             TextView tvDesc = view.findViewById(R.id.tvCategoryDesc);
+            ImageButton btnEdit = view.findViewById(R.id.btnEditCategory);
+            ImageButton btnDelete = view.findViewById(R.id.btnDeleteCategory);
+            View layoutContent = view.findViewById(R.id.layoutContent);
 
             tvIcon.setText(loai.getIcon() != null ? loai.getIcon() : "📦");
             tvName.setText(loai.getTenLoai());
             tvDesc.setText(loai.getMoTa());
 
-            view.setOnClickListener(v -> {
+            // Click on content to navigate to product list
+            layoutContent.setOnClickListener(v -> {
                 Intent intent = new Intent(CategoryGridActivity.this, ProductListActivity.class);
                 intent.putExtra("loaiId", loai.getId());
                 intent.putExtra("tenLoai", loai.getTenLoai());
                 startActivity(intent);
+            });
+
+            // Handle edit button
+            btnEdit.setOnClickListener(v -> {
+                Intent intent = new Intent(CategoryGridActivity.this, UpdateCategoryActivity.class);
+                intent.putExtra("categoryId", loai.getId());
+                startActivityForResult(intent, REQUEST_UPDATE_CATEGORY);
+            });
+
+            // Handle delete button
+            btnDelete.setOnClickListener(v -> {
+                new AlertDialog.Builder(CategoryGridActivity.this)
+                        .setTitle("Xóa danh mục")
+                        .setMessage("Bạn có chắc muốn xóa danh mục \"" + loai.getTenLoai() + "\"?\nTất cả sản phẩm trong danh mục này cũng sẽ bị xóa.")
+                        .setPositiveButton("Xóa", (dialog, which) -> {
+                            boolean success = db.deleteLoaiDoDung(loai.getId());
+                            if (success) {
+                                Toast.makeText(CategoryGridActivity.this, "Đã xóa danh mục", Toast.LENGTH_SHORT).show();
+                                loadCategories();
+                            } else {
+                                Toast.makeText(CategoryGridActivity.this, "Lỗi khi xóa danh mục", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Hủy", null)
+                        .show();
             });
 
             return view;
