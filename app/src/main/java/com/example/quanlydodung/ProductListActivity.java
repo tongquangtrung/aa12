@@ -82,22 +82,12 @@ public class ProductListActivity extends AppCompatActivity {
         recyclerProducts.setLayoutManager(new LinearLayoutManager(this));
     }
 
-//    private void setupToolbar() {
-//        setSupportActionBar(toolbar);
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().setTitle(categoryName);
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        }
-//        toolbar.setNavigationOnClickListener(v -> finish());
-//    }
-private void setupToolbar() {
-    // Không gọi setSupportActionBar() để tránh IllegalStateException
-    toolbar.setTitle(categoryName);
-    // nếu muốn đổi màu chữ tiêu đề:
-    // toolbar.setTitleTextColor(Color.WHITE);
-    // Thiết lập nút back (bạn đã có navigationIcon trong layout)
-    toolbar.setNavigationOnClickListener(v -> finish());
-}
+    private void setupToolbar() {
+        // Không gọi setSupportActionBar() để tránh IllegalStateException
+        toolbar.setTitle(categoryName);
+        // Thiết lập nút back
+        toolbar.setNavigationOnClickListener(v -> finish());
+    }
 
     private void setupSortSpinner() {
         String[] sortOptions = {
@@ -140,9 +130,9 @@ private void setupToolbar() {
         if (productList == null || productList.isEmpty()) return;
 
         switch (sortType) {
-            case 0: // Mới nhất (default)
+            case 0: // Mới nhất (default - reload from database)
                 loadProducts();
-                break;
+                return; // Return early, loadProducts already calls updateUI
 
             case 1: // Giá tăng dần
                 productList.sort((p1, p2) -> Double.compare(p1.getGia(), p2.getGia()));
@@ -157,7 +147,12 @@ private void setupToolbar() {
                 break;
         }
 
-        updateUI();
+        // Update adapter with sorted list
+        if (adapter != null) {
+            adapter.updateList(productList);
+        } else {
+            updateUI();
+        }
     }
 
     private void updateUI() {
@@ -172,7 +167,7 @@ private void setupToolbar() {
                 adapter = new DoDungAdapter(this, productList);
                 recyclerProducts.setAdapter(adapter);
             } else {
-                adapter.notifyDataSetChanged();
+                adapter.updateList(productList);
             }
         }
     }

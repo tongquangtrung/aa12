@@ -34,6 +34,12 @@ public class DoDungAdapter extends RecyclerView.Adapter<DoDungAdapter.ViewHolder
         this.db = new DBHelper(context);
     }
 
+    // Add method to update list
+    public void updateList(ArrayList<DoDung> newList) {
+        this.list = newList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_do_dung, parent, false);
